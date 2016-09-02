@@ -13,18 +13,18 @@ public class TestBase {
 
 	public void setUp(String file) {
 		this.rs = new RiveScript();
-		this.rs.loadFile("./fixtures/" + this.replies() + "/" + file);
+		this.rs.loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
 		this.rs.sortReplies();
 	}
 
 	public void setUp(String file, boolean debug) {
 		this.rs = new RiveScript(debug);
-		this.rs.loadFile("./fixtures/" + this.replies() + "/" + file);
+		this.rs.loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
 		this.rs.sortReplies();
 	}
 
 	public void extend(String file) {
-		this.rs.loadFile("./fixtures/" + this.replies() + "/" + file);
+		this.rs.loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
 		this.rs.sortReplies();
 	}
 

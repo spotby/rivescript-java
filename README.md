@@ -38,17 +38,15 @@ These commands may be used at your input prompt in RSBot:
     /dump sorted - Dump the internal trigger sort buffers (debugging)
     /last        - Print the last trigger you matched.
 
-## Makefile
+## Building
 
-I use a GNU Makefile to simplify builds and other commands (feel free to
-send a pull request to switch to Ant or something). Useful commands:
+rivescript-java can be built with gradle.  some useful commands
 
-* `make build`: compiles RSBot.java and, therefore, RiveScript.
-* `make run`: compiles RSBot.java and immediately runs it.
-* `make test`: run unit tests with JUnit.
-* `make clean`: cleans up `.class` files.
-* `make javadoc`: deletes the `doc/` folder and recreates it with the `javadoc`
-  command, for generating library documentation.
+* 'gradle clean' clean the project build directory
+* 'gradle build' run tests and build
+* 'gradle publishToMavenLocal' package rivescript-java nad send to your local maven repo (this is the same as 'mvn install') 
+* 'gradle eclipse' set up your eclipse class path and project 
+* `gradle javadoc`: create html documentation in build/docs
 
 ## QUICK START
 
@@ -67,15 +65,7 @@ tends to ship with RiveScript libraries.
 
 ## Unit Testing
 
-This library is tested using [JUnit](http://junit.org/). To run the test suite,
-make sure that JUnit is available on your `$CLASSPATH`, for example by adding
-the jar file:
-
-```bash
-export CLASSPATH="$CLASSPATH:/path/to/junit-4.10.jar"
-```
-
-And then type `make test` to run the unit tests.
+Tpe `gradle test` to run the unit tests.
 
 ## License
 

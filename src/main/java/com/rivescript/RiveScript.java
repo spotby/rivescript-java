@@ -311,7 +311,7 @@ public class RiveScript {
 	 * an object macro written in Java.
 	 *
 	 * @param name The name of the object macro.
-	 * @param handler The handler function.
+	 * @param impl The handler function.
 	 */
 	public void setSubroutine (String name, com.rivescript.ObjectMacro impl) {
 		// Is the Java handler available?
