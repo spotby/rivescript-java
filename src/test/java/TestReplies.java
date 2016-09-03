@@ -1,8 +1,8 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
 import org.junit.Test;
-import com.rivescript.RiveScript;
 
 public class TestReplies extends TestBase {
 	public String replies() {

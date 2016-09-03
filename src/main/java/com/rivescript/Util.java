@@ -24,16 +24,13 @@
 
 package com.rivescript;
 
-import com.rivescript.StringCompare;
-
-import java.lang.String;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Utility methods.

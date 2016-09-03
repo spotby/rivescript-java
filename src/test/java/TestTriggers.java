@@ -1,5 +1,4 @@
 import org.junit.Test;
-import com.rivescript.RiveScript;
 
 public class TestTriggers extends TestBase {
 	public String replies() {

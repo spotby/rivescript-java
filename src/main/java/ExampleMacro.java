@@ -12,18 +12,15 @@
  * See RSBot.java for more details.
  */
 
+import com.rivescript.Client;
 import com.rivescript.ObjectMacro;
-import java.lang.String;
-import java.lang.StringBuilder;
+import com.rivescript.RiveScriptEngine;
 
-public class ExampleMacro implements com.rivescript.ObjectMacro {
-	public String call (com.rivescript.RiveScript rs, String[] args) {
+public class ExampleMacro implements ObjectMacro {
+	public String call (RiveScriptEngine rs, Client client, String[] args) {
 		String message = String.join(" ", args);
 
-		// To get/set user variables for the user, you can use currentUser
-		// to find their ID and then use the usual methods.
-		String user = rs.currentUser();
-		rs.setUservar(user, "java", "This variable was set by Java "
+		client.set("java", "This variable was set by Java "
 			+ "when you said 'reverse " + message + "'");
 
 		// Reverse their message and return it.

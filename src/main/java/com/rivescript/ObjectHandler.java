@@ -19,10 +19,10 @@ public interface ObjectHandler {
 	 * reply from the object.
 	 *
 	 * @param name The name of the object being called.
-	 * @param user The user's ID.
+	 * @param client The user profile
 	 * @param args The argument list from the call tag.
 	 */
-	public String onCall (String name, String user, String[] args);
+	public String onCall (String name, Client client, String[] args);
 
 	/**
 	 * Set a Java class to handle the macro directly.

@@ -1,31 +1,33 @@
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import com.rivescript.RiveScript;
+
+import org.junit.Test;
+
+import com.rivescript.RiveScriptClient;
 
 public class TestBase {
-	protected RiveScript rs;
+	protected RiveScriptClient rs;
 
 	public String replies() {
 		return "undefined";
 	}
 
 	public void setUp(String file) {
-		this.rs = new RiveScript();
-		this.rs.loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
-		this.rs.sortReplies();
+		this.rs = new RiveScriptClient();
+		this.rs.getEngine().loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
+		this.rs.getEngine().sortReplies();
 	}
 
 	public void setUp(String file, boolean debug) {
-		this.rs = new RiveScript(debug);
-		this.rs.loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
-		this.rs.sortReplies();
+		this.rs = new RiveScriptClient(debug);
+		this.rs.getEngine().loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
+		this.rs.getEngine().sortReplies();
 	}
 
 	public void extend(String file) {
-		this.rs.loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
-		this.rs.sortReplies();
+		this.rs.getEngine().loadFile("src/test/resources/fixtures/" + this.replies() + "/" + file);
+		this.rs.getEngine().sortReplies();
 	}
 
 	public void uservar(String key, String value) {

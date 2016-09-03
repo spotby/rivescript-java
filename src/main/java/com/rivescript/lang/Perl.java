@@ -9,13 +9,15 @@ import java.util.Iterator;
 import java.util.Vector;
 import org.json.JSONObject;
 
+import com.rivescript.Client;
+
 /**
  * Perl programming language support for RiveScript-Java.
  */
 
 public class Perl implements com.rivescript.ObjectHandler {
 	private String rsp4j;                      // Path to the Perl script
-	private com.rivescript.RiveScript parent;  // Parent RS object
+	private com.rivescript.RiveScriptEngine engine;  // Parent RS object
 	private HashMap<String, String> codes =
 		new HashMap<String, String>();       // Object codes
 
@@ -26,8 +28,8 @@ public class Perl implements com.rivescript.ObjectHandler {
 	 * @param rivescript Instance of your RiveScript object.
 	 * @param rsp4j      Path to the rsp4j script (either in .pl or .exe format).
 	 */
-	public Perl (com.rivescript.RiveScript rivescript, String rsp4j) {
-		this.parent = rivescript;
+	public Perl (com.rivescript.RiveScriptEngine rivescript, String rsp4j) {
+		this.engine = rivescript;
 		this.rsp4j  = rsp4j;
 	}
 
@@ -51,19 +53,19 @@ public class Perl implements com.rivescript.ObjectHandler {
 	 * @param user The user's ID.
 	 * @param args The argument list from the call tag.
 	 */
-	public String onCall (String name, String user, String[] args) {
+	public String onCall (String name, Client profile, String[] args) {
 		// Prepare JSON data to send.
 		try {
 			JSONObject json = new JSONObject();
 
 			// Set the flat scalars first.
-			json.put("id", user);
+			json.put("id", profile.getId());
 			json.put("message", com.rivescript.Util.join(args, " "));
 			json.put("code", codes.get(name));
 
 			// Transcode the user's data into a JSON object.
 			JSONObject vars = new JSONObject();
-			HashMap<String, String> data = parent.getUservars(user);
+			HashMap<String, String> data = profile.getData();
 			Iterator it = data.keySet().iterator();
 			while (it.hasNext()) {
 				String key = it.next().toString();
@@ -114,7 +116,7 @@ public class Perl implements com.rivescript.ObjectHandler {
 			String[] keys = reply.getNames(newVars);
 			for (int i = 0; i < keys.length; i++) {
 				String value = newVars.getString(keys[i]);
-				parent.setUservar(user, keys[i], value);
+				profile.set(keys[i], value);
 			}
 
 			// OK. Get the reply.

@@ -24,13 +24,12 @@
 
 package com.rivescript;
 
-import java.lang.String;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A topic manager class for RiveScript.

@@ -64,6 +64,14 @@ public class Client {
 	public void set (String name, String value) {
 		data.put(name, value);
 	}
+	
+	public String getLastMatch () {
+		return this.get( "__lastmatch__");
+	}
+	
+	public String getId() {
+		return id;
+	}
 
 	/**
 	 * Get a variable from the client. Returns the text "undefined" if it doesn't

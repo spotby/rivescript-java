@@ -1,8 +1,9 @@
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.lang.String;
-import com.rivescript.RiveScript;
+import java.io.InputStreamReader;
+
+import com.rivescript.RiveScriptClient;
+import com.rivescript.RiveScriptEngine;
 
 public class RSBot {
 	public static void main (String[] args) {
@@ -10,7 +11,7 @@ public class RSBot {
 		System.out.println(""
 			+ "      .   .       \n"
 			+ "     .:...::      RiveScript Java // RSBot\n"
-			+ "    .::   ::.     Version: " + com.rivescript.RiveScript.VERSION + "\n"
+			+ "    .::   ::.     Version: " + com.rivescript.RiveScriptEngine.VERSION + "\n"
 			+ " ..:;;. ' .;;:..  \n"
 			+ "    .  '''  .     Type '/quit' to quit.\n"
 			+ "     :;,:,;:      Type '/help' for more options.\n"
@@ -27,18 +28,19 @@ public class RSBot {
 
 		// Create a new RiveScript interpreter.
 		System.out.println(":: Creating RS Object");
-		RiveScript rs = new RiveScript(debug);
+		RiveScriptClient rs = new RiveScriptClient(debug);
+		RiveScriptEngine engine = rs.getEngine();
 
 		// Create a handler for Perl as an object macro language.
-		rs.setHandler("perl", new com.rivescript.lang.Perl(rs, "./lang/rsp4j.pl"));
+		engine.setHandler("perl", new com.rivescript.lang.Perl(engine, "./lang/rsp4j.pl"));
 
 		// Define an object macro in Java.
-		rs.setSubroutine("javatest", new ExampleMacro());
+		engine.setSubroutine("javatest", new ExampleMacro());
 
 		// Load and sort replies
 		System.out.println(":: Loading replies");
-		rs.loadDirectory("./Aiden");
-		rs.sortReplies();
+		engine.loadDirectory("./Aiden");
+		engine.sortReplies();
 
 		// Enter the main loop.
 		InputStreamReader converter = new InputStreamReader(System.in);

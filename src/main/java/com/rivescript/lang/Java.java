@@ -3,6 +3,8 @@ package com.rivescript.lang;
 import java.lang.String;
 import java.util.HashMap;
 
+import com.rivescript.Client;
+
 /**
  * Java programming language support for RiveScript-Java.
  *
@@ -13,7 +15,7 @@ import java.util.HashMap;
  */
 
 public class Java implements com.rivescript.ObjectHandler {
-	private com.rivescript.RiveScript master;
+	private com.rivescript.RiveScriptEngine masterEngine;
 	private HashMap<String, com.rivescript.ObjectMacro> handlers =
 		new HashMap<String, com.rivescript.ObjectMacro>();
 
@@ -22,8 +24,8 @@ public class Java implements com.rivescript.ObjectHandler {
 	 *
 	 * @param rivescript Instance of your RiveScript object.
 	 */
-	public Java (com.rivescript.RiveScript rivescript) {
-		this.master = rivescript;
+	public Java (com.rivescript.RiveScriptEngine rivescript) {
+		this.masterEngine = rivescript;
 	}
 
 	/**
@@ -55,10 +57,10 @@ public class Java implements com.rivescript.ObjectHandler {
 	 * This should return the reply text from the object.
 	 *
 	 * @param name The name of the object being called.
-	 * @param user The calling user's ID.
+	 * @param profile The calling user
 	 * @param args The argument list from the call tag.
 	 */
-	public String onCall (String name, String user, String[] args) {
+	public String onCall (String name, Client profile, String[] args) {
 		// Does the object macro exist?
 		com.rivescript.ObjectMacro macro = this.handlers.get(name);
 		if (macro == null) {
@@ -66,6 +68,6 @@ public class Java implements com.rivescript.ObjectHandler {
 		}
 
 		// Call it!
-		return macro.call(this.master, args);
+		return macro.call(this.masterEngine, profile, args);
 	}
 }
