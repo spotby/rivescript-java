@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 import org.json.JSONObject;
 
@@ -65,7 +66,7 @@ public class Perl implements com.rivescript.ObjectHandler {
 
 			// Transcode the user's data into a JSON object.
 			JSONObject vars = new JSONObject();
-			HashMap<String, String> data = profile.getData();
+			Map<String, String> data = profile.getData();
 			Iterator it = data.keySet().iterator();
 			while (it.hasNext()) {
 				String key = it.next().toString();

@@ -24,7 +24,6 @@
 
 package com.rivescript;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
@@ -34,8 +33,8 @@ import java.util.Vector;
  */
 
 public class ClientManager {
-	private HashMap<String, com.rivescript.Client> clients =
-		new HashMap<String, com.rivescript.Client>(); // List of users
+	private HashMap<String, SimpleClient> clients =
+		new HashMap<String, SimpleClient>(); // List of users
 
 	/**
 	 * Create a client manager. Only one needed per bot.
@@ -49,11 +48,11 @@ public class ClientManager {
 	 *
 	 * @param username The user ID you want to work with.
 	 */
-	public com.rivescript.Client client (String username) {
+	public Client client (String username) {
 		// Is this a new topic?
 		if (clients.containsKey(username) == false) {
 			// Create it.
-			clients.put(username, new com.rivescript.Client(username));
+			clients.put(username, new SimpleClient(username));
 		}
 
 		return clients.get(username);

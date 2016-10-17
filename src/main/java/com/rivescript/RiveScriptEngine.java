@@ -582,7 +582,7 @@ public class RiveScriptEngine {
 		 * @param client    the calling client profile
 		 * @param trigger The raw trigger text.
 		 */
-		private String triggerRegexp ( com.rivescript.Client profile, String trigger) {
+		private String triggerRegexp ( Client profile, String trigger) {
 			// If the trigger is simply '*', it needs to become (.*?) so it catches the empty string.
 			String regexp = trigger.replaceAll("^\\*$", "<zerowidthstar>");
 

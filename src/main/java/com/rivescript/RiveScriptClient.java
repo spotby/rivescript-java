@@ -26,6 +26,7 @@ package com.rivescript;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A RiveScript interpreter written in Java.<p>
@@ -162,7 +163,7 @@ public class RiveScriptClient {
 	 *
 	 * @param user The user ID to get the vars for.
 	 */
-	public HashMap<String, String> getUservars (String user) {
+	public Map<String, String> getUservars (String user) {
 		if (clients.clientExists(user)) {
 			return clients.client(user).getData();
 		}
