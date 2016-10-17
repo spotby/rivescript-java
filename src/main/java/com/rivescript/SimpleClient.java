@@ -31,7 +31,7 @@ import java.util.HashMap;
  * An object to represent an individual user's data.
  */
 
-public class Client {
+public class SimpleClient implements Client  {
 	private String id;
 	private HashMap<String, String> data = new HashMap<String, String>(); // User data
 	private String[] input = new String [10]; // User's inputs
@@ -42,7 +42,7 @@ public class Client {
 	 *
 	 * @param id A unique ID for this client.
 	 */
-	public Client (String id) {
+	public SimpleClient (String id) {
 		this.id = id;
 
 		// Set default vars.
@@ -55,30 +55,34 @@ public class Client {
 		}
 	}
 
-	/**
-	 * Set a variable for the client.
-	 *
-	 * @param name  The name of the variable.
-	 * @param value The value to set in the variable.
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#set(java.lang.String, java.lang.String)
 	 */
+	@Override
 	public void set (String name, String value) {
 		data.put(name, value);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#getLastMatch()
+	 */
+	@Override
 	public String getLastMatch () {
 		return this.get( "__lastmatch__");
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#getId()
+	 */
+	@Override
 	public String getId() {
 		return id;
 	}
 
-	/**
-	 * Get a variable from the client. Returns the text "undefined" if it doesn't
-	 * exist.
-	 *
-	 * @param name The name of the variable.
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#get(java.lang.String)
 	 */
+	@Override
 	public String get (String name) {
 		if (data.containsKey(name)) {
 			return data.get(name);
@@ -86,53 +90,55 @@ public class Client {
 		return "undefined";
 	}
 
-	/**
-	 * Delete a variable for the client.
-	 *
-	 * @param name The name of the variable.
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#delete(java.lang.String)
 	 */
+	@Override
 	public void delete (String name) {
 		if (data.containsKey(name)) {
 			data.remove(name);
 		}
 	}
 
-	/**
-	 * Retrieve a hashmap of all the user's vars and values.
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#getData()
 	 */
+	@Override
 	public HashMap<String, String> getData () {
 		return data;
 	}
 
-	/**
-	 * Replace the internal hashmap with this new data (dangerous!).
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#setData(java.util.HashMap)
 	 */
+	@Override
 	public boolean setData (HashMap<String, String> newdata) {
 		this.data = newdata;
 		return true;
 	}
 
-	/**
-	 * Add a line to the user's input history.
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#addInput(java.lang.String)
 	 */
+	@Override
 	public void addInput (String text) {
 		// Push this onto the front of the input array.
 		input = unshift(input, text);
 	}
 
-	/**
-	 * Add a line to the user's reply history.
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#addReply(java.lang.String)
 	 */
+	@Override
 	public void addReply (String text) {
 		// Push this onto the front of the reply array.
 		reply = unshift(reply, text);
 	}
 
-	/**
-	 * Get a specific input value by index.
-	 *
-	 * @param index The index of the input value to get (1-9).
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#getInput(int)
 	 */
+	@Override
 	public String getInput (int index) throws java.lang.IndexOutOfBoundsException {
 		if (index >= 1 && index <= 9) {
 			return this.input[index-1];
@@ -142,11 +148,10 @@ public class Client {
 		}
 	}
 
-	/**
-	 * Get a specific reply value by index.
-	 *
-	 * @param index The index of the reply value to get (1-9).
+	/* (non-Javadoc)
+	 * @see com.rivescript.Client#getReply(int)
 	 */
+	@Override
 	public String getReply (int index) throws java.lang.IndexOutOfBoundsException {
 		if (index >= 1 && index <= 9) {
 			return this.reply[index-1];
